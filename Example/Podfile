@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'DynamicWaveCollectionView_Example' do
+  pod 'DynamicWaveCollectionView', :path => '../'
+
+  target 'DynamicWaveCollectionView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
