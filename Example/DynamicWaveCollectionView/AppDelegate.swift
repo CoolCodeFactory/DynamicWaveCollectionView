@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  DynamicWaveCollectionView
 //
-//  Created by Dmitriy Utmanov on 07/12/2016.
-//  Copyright (c) 2016 Dmitriy Utmanov. All rights reserved.
+//  Created by Dmitry Utmanov on 07/12/2016.
+//  Copyright © 2016 Dmitry Utmanov. All rights reserved.
 //
 
 import UIKit

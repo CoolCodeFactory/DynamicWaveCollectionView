@@ -1,25 +1,114 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uWw-8s-5XK">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <scene sceneID="T80-ud-pLC">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uWw-8s-5XK" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="BdD-Mu-xId"/>
+                        <viewControllerLayoutGuide type="bottom" id="Eef-5G-Mnx"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="fyY-Lt-Wr2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Si6-H6-Xi8">
+                                <rect key="frame" x="0.0" y="100" width="600" height="500"/>
+                                <connections>
+                                    <segue destination="a3K-KC-jm7" kind="embed" id="rM8-cx-laI"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am just a UIViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emH-gR-VTX">
+                                <rect key="frame" x="20" y="50" width="560" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="emH-gR-VTX" firstAttribute="leading" secondItem="fyY-Lt-Wr2" secondAttribute="leadingMargin" id="2NX-sd-fkJ"/>
+                            <constraint firstItem="Eef-5G-Mnx" firstAttribute="top" secondItem="Si6-H6-Xi8" secondAttribute="bottom" id="A6k-L2-2j5"/>
+                            <constraint firstItem="Si6-H6-Xi8" firstAttribute="leading" secondItem="fyY-Lt-Wr2" secondAttribute="leading" id="cns-7v-rb8"/>
+                            <constraint firstItem="emH-gR-VTX" firstAttribute="top" secondItem="BdD-Mu-xId" secondAttribute="bottom" constant="30" id="fC2-LI-Kof"/>
+                            <constraint firstAttribute="trailing" secondItem="Si6-H6-Xi8" secondAttribute="trailing" id="qHD-FJ-46V"/>
+                            <constraint firstItem="Si6-H6-Xi8" firstAttribute="top" secondItem="fyY-Lt-Wr2" secondAttribute="top" constant="100" id="qjh-Q3-kfr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="emH-gR-VTX" secondAttribute="trailing" id="wpo-7m-p1K"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ghE-xF-2Q7" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="270" y="305"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2Eq-sf-aHw">
+            <objects>
+                <collectionViewController id="a3K-KC-jm7" customClass="ViewController" customModule="DynamicWaveCollectionView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="QSk-la-Aza">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e8U-Wi-RCk">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="OAC-tG-QUD" customClass="CollectionViewCell" customModule="DynamicWaveCollectionView_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yxh-cz-S2L">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Yxh-cz-S2L" firstAttribute="top" secondItem="OAC-tG-QUD" secondAttribute="top" id="BEo-Cl-G9A"/>
+                                    <constraint firstItem="Yxh-cz-S2L" firstAttribute="leading" secondItem="OAC-tG-QUD" secondAttribute="leading" id="UKS-tw-Mt8"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yxh-cz-S2L" secondAttribute="bottom" id="f38-vQ-4ae"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yxh-cz-S2L" secondAttribute="trailing" id="rhr-aK-8zx"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="KCL-GA-u6e" customClass="HeaderCollectionReusableView" customModule="DynamicWaveCollectionView_Example" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKp-YT-3vp">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                    <color key="backgroundColor" red="1" green="0.16443011569999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="NKp-YT-3vp" firstAttribute="leading" secondItem="KCL-GA-u6e" secondAttribute="leading" id="Lwx-Qa-HHD"/>
+                                <constraint firstItem="NKp-YT-3vp" firstAttribute="top" secondItem="KCL-GA-u6e" secondAttribute="top" id="Npi-hU-x9K"/>
+                                <constraint firstAttribute="trailing" secondItem="NKp-YT-3vp" secondAttribute="trailing" id="XSz-aX-glM"/>
+                                <constraint firstAttribute="bottom" secondItem="NKp-YT-3vp" secondAttribute="bottom" id="bso-K8-2Cu"/>
+                            </constraints>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="a3K-KC-jm7" id="XL3-b7-ibp"/>
+                            <outlet property="delegate" destination="a3K-KC-jm7" id="dLE-je-Ief"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zxQ-Te-GTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944" y="374"/>
         </scene>
     </scenes>
 </document>

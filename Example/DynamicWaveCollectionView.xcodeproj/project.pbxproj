@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C6947601D3575B800EB7C0E /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69475F1D3575B800EB7C0E /* CollectionViewCell.swift */; };
+		1CA4591C1D3586F400071133 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4591B1D3586F400071133 /* HeaderCollectionReusableView.swift */; };
 		4D531E929D75F355861BB8EA /* Pods_DynamicWaveCollectionView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64F1D422EE0EDA8F5402881 /* Pods_DynamicWaveCollectionView_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C69475F1D3575B800EB7C0E /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		1CA4591B1D3586F400071133 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* DynamicWaveCollectionView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicWaveCollectionView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CA4591D1D3586FE00071133 /* CollectionView Elements */ = {
+			isa = PBXGroup;
+			children = (
+				1C69475F1D3575B800EB7C0E /* CollectionViewCell.swift */,
+				1CA4591B1D3586F400071133 /* HeaderCollectionReusableView.swift */,
+			);
+			name = "CollectionView Elements";
+			sourceTree = "<group>";
+		};
 		2636700B1038D6E217433175 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +115,7 @@
 		607FACD21AFB9204008FA782 /* Example for DynamicWaveCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				1CA4591D1D3586FE00071133 /* CollectionView Elements */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -359,8 +373,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CA4591C1D3586F400071133 /* HeaderCollectionReusableView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				1C6947601D3575B800EB7C0E /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

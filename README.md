@@ -1,6 +1,6 @@
 # DynamicWaveCollectionView
 
-[![CI Status](http://img.shields.io/travis/Dmitriy Utmanov/DynamicWaveCollectionView.svg?style=flat)](https://travis-ci.org/Dmitriy Utmanov/DynamicWaveCollectionView)
+[![CI Status](http://img.shields.io/travis/Dmitry Utmanov/DynamicWaveCollectionView.svg?style=flat)](https://travis-ci.org/Dmitry Utmanov/DynamicWaveCollectionView)
 [![Version](https://img.shields.io/cocoapods/v/DynamicWaveCollectionView.svg?style=flat)](http://cocoapods.org/pods/DynamicWaveCollectionView)
 [![License](https://img.shields.io/cocoapods/l/DynamicWaveCollectionView.svg?style=flat)](http://cocoapods.org/pods/DynamicWaveCollectionView)
 [![Platform](https://img.shields.io/cocoapods/p/DynamicWaveCollectionView.svg?style=flat)](http://cocoapods.org/pods/DynamicWaveCollectionView)
@@ -22,7 +22,7 @@ pod "DynamicWaveCollectionView"
 
 ## Author
 
-Dmitriy Utmanov, utm4@mail.ru
+Dmitry Utmanov, utm4@mail.ru
 
 ## License
 
