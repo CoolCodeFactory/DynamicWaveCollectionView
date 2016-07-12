@@ -18,7 +18,9 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-UICollectionView with floating rows (like iMassage) + "didSelectItemAtIndexPath" wave animation
+If You want table or collection with floating, dumping, stretching (dynamic) cells (items) like iMessage app DynamicWaveCollectionView is what you want!
+
+DynamicWaveCollectionView is a subclass of UICollectionViewController + UICollectionViewFlowLayout with a simple API with floating rows + "didSelectItemAtIndexPath" wave animation
                        DESC
 
   s.homepage         = 'https://github.com/CoolCodeFactory/DynamicWaveCollectionView'
