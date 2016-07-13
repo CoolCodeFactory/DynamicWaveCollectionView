@@ -72,7 +72,8 @@ extension DynamicWaveCollectionViewController: UICollectionViewDelegateFlowLayou
         var founded = Set<NSIndexPath>()
         var indexPaths = [Set<NSIndexPath>]()
         indexPaths.append([indexPath])
-        
+
+        // FIXME: Check rect
         while left > 0 || right < self.collectionView!.frame.size.width || top > self.collectionView!.contentOffset.y || bottom < self.collectionView!.frame.size.height {
             left -= 5
             right += 5
