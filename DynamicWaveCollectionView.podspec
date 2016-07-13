@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DynamicWaveCollectionView'
-  s.version          = '0.1.1'
+  s.version          = '0.9.1'
   s.summary          = 'UICollectionView with floating rows (like iMassage) + "didSelectItemAtIndexPath" wave animation'
 
 # This description is used to generate tags and improve search results.
