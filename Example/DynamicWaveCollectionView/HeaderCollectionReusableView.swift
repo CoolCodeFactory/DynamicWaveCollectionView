@@ -9,5 +9,13 @@
 import UIKit
 
 class HeaderCollectionReusableView: UICollectionReusableView {
+ 
+    @IBOutlet weak var containerView: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
+        containerView.layer.cornerRadius = 10.0
+        containerView.layer.masksToBounds = true
+    }
 }

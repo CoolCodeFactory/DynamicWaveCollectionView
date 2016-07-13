@@ -10,4 +10,12 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var containerView: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        containerView.layer.cornerRadius = 10.0
+        containerView.layer.masksToBounds = true
+    }
 }

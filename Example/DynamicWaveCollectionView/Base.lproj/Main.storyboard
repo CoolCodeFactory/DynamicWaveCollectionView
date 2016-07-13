@@ -54,6 +54,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="QSk-la-Aza">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e8U-Wi-RCk">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
@@ -70,7 +71,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yxh-cz-S2L">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -82,6 +83,9 @@
                                     <constraint firstAttribute="bottom" secondItem="Yxh-cz-S2L" secondAttribute="bottom" id="f38-vQ-4ae"/>
                                     <constraint firstAttribute="trailing" secondItem="Yxh-cz-S2L" secondAttribute="trailing" id="rhr-aK-8zx"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="containerView" destination="Yxh-cz-S2L" id="Iwi-We-78h"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="KCL-GA-u6e" customClass="HeaderCollectionReusableView" customModule="DynamicWaveCollectionView_Example" customModuleProvider="target">
@@ -89,16 +93,31 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKp-YT-3vp">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                    <color key="backgroundColor" red="1" green="0.16443011569999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <rect key="frame" x="10" y="0.0" width="580" height="50"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFF-GY-0Rb">
+                                            <rect key="frame" x="228" y="14" width="125" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.098039215686274508" green="0.50980392156862742" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="IFF-GY-0Rb" firstAttribute="centerX" secondItem="NKp-YT-3vp" secondAttribute="centerX" id="kSi-go-yNE"/>
+                                        <constraint firstItem="IFF-GY-0Rb" firstAttribute="centerY" secondItem="NKp-YT-3vp" secondAttribute="centerY" id="q9J-0s-7PP"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="NKp-YT-3vp" firstAttribute="leading" secondItem="KCL-GA-u6e" secondAttribute="leading" id="Lwx-Qa-HHD"/>
+                                <constraint firstItem="NKp-YT-3vp" firstAttribute="leading" secondItem="KCL-GA-u6e" secondAttribute="leading" constant="10" id="Lwx-Qa-HHD"/>
                                 <constraint firstItem="NKp-YT-3vp" firstAttribute="top" secondItem="KCL-GA-u6e" secondAttribute="top" id="Npi-hU-x9K"/>
-                                <constraint firstAttribute="trailing" secondItem="NKp-YT-3vp" secondAttribute="trailing" id="XSz-aX-glM"/>
+                                <constraint firstAttribute="trailing" secondItem="NKp-YT-3vp" secondAttribute="trailing" constant="10" id="XSz-aX-glM"/>
                                 <constraint firstAttribute="bottom" secondItem="NKp-YT-3vp" secondAttribute="bottom" id="bso-K8-2Cu"/>
                             </constraints>
+                            <connections>
+                                <outlet property="containerView" destination="NKp-YT-3vp" id="aeB-Hr-Mxn"/>
+                            </connections>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="a3K-KC-jm7" id="XL3-b7-ibp"/>

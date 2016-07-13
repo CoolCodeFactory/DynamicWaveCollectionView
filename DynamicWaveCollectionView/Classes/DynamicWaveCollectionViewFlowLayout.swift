@@ -9,7 +9,7 @@
 import UIKit
 
 public class DynamicWaveCollectionViewFlowLayout: UICollectionViewFlowLayout {
-
+    
     public var length: CGFloat = 0.0
     public var damping: CGFloat = 0.8
     public var frequency: CGFloat = 1.0
@@ -21,6 +21,8 @@ public class DynamicWaveCollectionViewFlowLayout: UICollectionViewFlowLayout {
     var visibleIndexPathsSet: Set<NSIndexPath>!
     var latestDelta: CGFloat = 0.0
     
+    let kElementKindSectionHeaderItem = Int.max - 1
+    let kElementKindSectionFooterItem = Int.max - 2
     
     override public init() {
         super.init()
@@ -39,7 +41,6 @@ public class DynamicWaveCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     override public func prepareLayout() {
         super.prepareLayout()
-        print("prepare layout")
 
         let visibleRect = CGRectInset(CGRect(origin: self.collectionView!.bounds.origin, size: self.collectionView!.frame.size), -100, -100)
 
@@ -58,18 +59,48 @@ public class DynamicWaveCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 if let attachmentBehavior = behavior as? UIAttachmentBehavior {
                     self.dynamicAnimator.removeBehavior(behavior)
                     let collectionViewLayoutAttributes = attachmentBehavior.items.last as! UICollectionViewLayoutAttributes
-                    self.visibleIndexPathsSet.remove(collectionViewLayoutAttributes.indexPath)
+                    
+                    if let kind = collectionViewLayoutAttributes.representedElementKind {
+                        switch kind {
+                        case UICollectionElementKindSectionHeader:
+                            let indexPath = NSIndexPath(forItem: kElementKindSectionHeaderItem, inSection: collectionViewLayoutAttributes.indexPath.section)
+                            self.visibleIndexPathsSet.remove(indexPath)
+                            
+                        case UICollectionElementKindSectionFooter:
+                            let indexPath = NSIndexPath(forItem: kElementKindSectionFooterItem, inSection: collectionViewLayoutAttributes.indexPath.section)
+                            self.visibleIndexPathsSet.remove(indexPath)
+                            
+                        default:
+                            fatalError("Unknown kind type")
+                        }
+                    } else {
+                        self.visibleIndexPathsSet.remove(collectionViewLayoutAttributes.indexPath)
+                    }
                 }
             }
             
             let newlyVisibleItems = itemsInVisibleRectArray.filter({ (collectionViewLayoutAttributes) -> Bool in
-                return !visibleIndexPathsSet.contains(collectionViewLayoutAttributes.indexPath)
+                if let kind = collectionViewLayoutAttributes.representedElementKind {
+                    switch kind {
+                    case UICollectionElementKindSectionHeader:
+                        let indexPath = NSIndexPath(forItem: kElementKindSectionHeaderItem, inSection: collectionViewLayoutAttributes.indexPath.section)
+                        return !visibleIndexPathsSet.contains(indexPath)
+                        
+                    case UICollectionElementKindSectionFooter:
+                        let indexPath = NSIndexPath(forItem: kElementKindSectionFooterItem, inSection: collectionViewLayoutAttributes.indexPath.section)
+                        return !visibleIndexPathsSet.contains(indexPath)
+                        
+                    default:
+                        fatalError("Unknown kind type")
+                    }
+                } else {
+                    return !visibleIndexPathsSet.contains(collectionViewLayoutAttributes.indexPath)
+                }
             })
             
             let touchLocation = self.collectionView!.panGestureRecognizer.locationInView(self.collectionView)
             
             for item in newlyVisibleItems {
-
                 let center = item.center
                 var fixedCenter: CGPoint
                 switch scrollDirection {
@@ -135,23 +166,50 @@ public class DynamicWaveCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 }
                 
                 self.dynamicAnimator.addBehavior(springBehaviour)
-                self.visibleIndexPathsSet.insert(item.indexPath)
-                print("newlyVisibleItems update")
+                
+                if let kind = item.representedElementKind {
+                    switch kind {
+                    case UICollectionElementKindSectionHeader:
+                        let indexPath = NSIndexPath(forItem: kElementKindSectionHeaderItem, inSection: item.indexPath.section)
+                        self.visibleIndexPathsSet.insert(indexPath)
+
+                    case UICollectionElementKindSectionFooter:
+                        let indexPath = NSIndexPath(forItem: kElementKindSectionFooterItem, inSection: item.indexPath.section)
+                        self.visibleIndexPathsSet.insert(indexPath)
+                        
+                    default:
+                        fatalError("Unknown kind type")
+                    }
+                } else {
+                    self.visibleIndexPathsSet.insert(item.indexPath)
+                }
             }
         }
     }
     
     override public func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let layoutAttributes = dynamicAnimator.itemsInRect(rect) as! [UICollectionViewLayoutAttributes]
-        let scaledLayoutAttributes: [UICollectionViewLayoutAttributes] = layoutAttributes.map({ (collectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes in
-            if downscaleIndexPaths.contains(collectionViewLayoutAttributes.indexPath) {
-                collectionViewLayoutAttributes.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.4, 0.4)
-            } else {
-                collectionViewLayoutAttributes.transform = CGAffineTransformIdentity
+        
+        if !downscaleIndexPaths.isEmpty {
+            let scaledLayoutAttributes: [UICollectionViewLayoutAttributes] = layoutAttributes.map({ (collectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes in
+                if downscaleIndexPaths.contains(collectionViewLayoutAttributes.indexPath) {
+                    collectionViewLayoutAttributes.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.4, 0.4)
+                } else {
+                    collectionViewLayoutAttributes.transform = CGAffineTransformIdentity
+                }
+                return collectionViewLayoutAttributes
+            })
+            
+            if scaledLayoutAttributes.isEmpty {
+                return super.layoutAttributesForElementsInRect(rect)
             }
-            return collectionViewLayoutAttributes
-        })
-        return scaledLayoutAttributes
+            return scaledLayoutAttributes
+        } else {
+            if layoutAttributes.isEmpty {
+                return super.layoutAttributesForElementsInRect(rect)
+            }
+            return layoutAttributes
+        }
     }
     
     override public func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {

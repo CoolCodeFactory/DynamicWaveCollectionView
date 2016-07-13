@@ -10,14 +10,26 @@ import UIKit
 
 public class DynamicWaveCollectionViewController: UICollectionViewController {
 
+    public var gradientTopAlpha: CGFloat = 0.4 {
+        didSet {
+            gradientLayer.colors = [UIColor.whiteColor().colorWithAlphaComponent(gradientTopAlpha).CGColor, UIColor.clearColor().CGColor]
+        }
+    }
+    
     var timers = [NSTimer]()
-
+    var gradientLayer: CAGradientLayer!
+    
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         let collectionViewFlowLayout = DynamicWaveCollectionViewFlowLayout()
         collectionView!.setCollectionViewLayout(collectionViewFlowLayout, animated: false)
+        
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(origin: CGPoint.zero, size: collectionView!.frame.size)
+        gradientLayer.colors = [UIColor.whiteColor().colorWithAlphaComponent(gradientTopAlpha).CGColor, UIColor.clearColor().CGColor]
+        collectionView!.superview!.layer.addSublayer(gradientLayer)
     }
 }
 

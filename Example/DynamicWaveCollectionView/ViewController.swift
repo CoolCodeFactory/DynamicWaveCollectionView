@@ -9,6 +9,14 @@
 import UIKit
 import DynamicWaveCollectionView
 
+
+let numberOfColumn: Int = 1
+let edgeOffset: CGFloat = 10
+let minimumInteritemSpacing: CGFloat = 5
+let minimumLineSpacing: CGFloat = 5
+let colors = [UIColor(red: 229/255, green: 229/255, blue: 229/255, alpha: 1), UIColor(red: 25/255, green: 130/255, blue: 255/255, alpha: 1)]
+
+
 class ViewController: DynamicWaveCollectionViewController {
     
     override func viewDidLoad() {
@@ -55,25 +63,25 @@ extension ViewController {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1
+        return minimumLineSpacing
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1
+        return minimumInteritemSpacing
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 2 - 2 - 1 * 3)
-        let cellWidth = floor(width / 4)
-        return CGSize(width: cellWidth, height: cellWidth)
+        let width = collectionView.frame.width - (edgeOffset * 2) - (minimumInteritemSpacing * CGFloat(numberOfColumn) - 1)
+        let cellWidth = floor(width / CGFloat(numberOfColumn))
+        return CGSize(width: cellWidth, height: floor(44))
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 15, left: 2, bottom: 15, right: 2)
+        return UIEdgeInsets(top: edgeOffset, left: edgeOffset, bottom: edgeOffset, right: edgeOffset)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width = collectionView.frame.width - 2 - 2
+        let width = collectionView.frame.width - (edgeOffset * 2)
         return CGSize(width: width, height: 100)
     }
 }
@@ -99,6 +107,8 @@ extension ViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CollectionViewCell
+        let colorIndex = indexPath.row % colors.count
+        cell.containerView.backgroundColor = colors[colorIndex]
         return cell
     }
     
