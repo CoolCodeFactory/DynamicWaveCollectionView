@@ -27,7 +27,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am just a UIViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emH-gR-VTX">
                                 <rect key="frame" x="20" y="50" width="560" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -57,13 +57,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e8U-Wi-RCk">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="50" height="50"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="100"/>
+                            <size key="footerReferenceSize" width="50" height="100"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="OAC-tG-QUD" customClass="CollectionViewCell" customModule="DynamicWaveCollectionView_Example" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="100" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -89,14 +89,14 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="KCL-GA-u6e" customClass="HeaderCollectionReusableView" customModule="DynamicWaveCollectionView_Example" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKp-YT-3vp">
-                                    <rect key="frame" x="10" y="0.0" width="580" height="50"/>
+                                    <rect key="frame" x="10" y="5" width="580" height="90"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFF-GY-0Rb">
-                                            <rect key="frame" x="228" y="14" width="125" height="22"/>
+                                            <rect key="frame" x="228" y="34" width="125" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -111,12 +111,43 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="NKp-YT-3vp" firstAttribute="leading" secondItem="KCL-GA-u6e" secondAttribute="leading" constant="10" id="Lwx-Qa-HHD"/>
-                                <constraint firstItem="NKp-YT-3vp" firstAttribute="top" secondItem="KCL-GA-u6e" secondAttribute="top" id="Npi-hU-x9K"/>
+                                <constraint firstItem="NKp-YT-3vp" firstAttribute="top" secondItem="KCL-GA-u6e" secondAttribute="top" constant="5" id="Npi-hU-x9K"/>
                                 <constraint firstAttribute="trailing" secondItem="NKp-YT-3vp" secondAttribute="trailing" constant="10" id="XSz-aX-glM"/>
-                                <constraint firstAttribute="bottom" secondItem="NKp-YT-3vp" secondAttribute="bottom" id="bso-K8-2Cu"/>
+                                <constraint firstAttribute="bottom" secondItem="NKp-YT-3vp" secondAttribute="bottom" constant="5" id="bso-K8-2Cu"/>
                             </constraints>
                             <connections>
                                 <outlet property="containerView" destination="NKp-YT-3vp" id="aeB-Hr-Mxn"/>
+                            </connections>
+                        </collectionReusableView>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footer" id="1cG-WU-dUU" customClass="HeaderCollectionReusableView" customModule="DynamicWaveCollectionView_Example" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="150" width="600" height="100"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3t-b2-KHb">
+                                    <rect key="frame" x="10" y="5" width="580" height="90"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Footer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2R-1k-s8o">
+                                            <rect key="frame" x="231.5" y="34" width="118.5" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.098039215690000001" green="0.50980392159999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="v2R-1k-s8o" firstAttribute="centerX" secondItem="G3t-b2-KHb" secondAttribute="centerX" id="DfE-9c-lKh"/>
+                                        <constraint firstItem="v2R-1k-s8o" firstAttribute="centerY" secondItem="G3t-b2-KHb" secondAttribute="centerY" id="oH4-xO-kpa"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="G3t-b2-KHb" secondAttribute="trailing" constant="10" id="Hum-bY-E5U"/>
+                                <constraint firstAttribute="bottom" secondItem="G3t-b2-KHb" secondAttribute="bottom" constant="5" id="LtV-7h-h5U"/>
+                                <constraint firstItem="G3t-b2-KHb" firstAttribute="leading" secondItem="1cG-WU-dUU" secondAttribute="leading" constant="10" id="XHl-e4-EfZ"/>
+                                <constraint firstItem="G3t-b2-KHb" firstAttribute="top" secondItem="1cG-WU-dUU" secondAttribute="top" constant="5" id="zzB-3m-xFA"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="containerView" destination="G3t-b2-KHb" id="uA5-2o-Jyq"/>
                             </connections>
                         </collectionReusableView>
                         <connections>

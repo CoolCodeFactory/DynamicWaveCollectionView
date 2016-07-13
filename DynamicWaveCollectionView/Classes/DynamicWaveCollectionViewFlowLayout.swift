@@ -10,12 +10,36 @@ import UIKit
 
 public class DynamicWaveCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
-    public var length: CGFloat = 0.0
-    public var damping: CGFloat = 0.8
-    public var frequency: CGFloat = 1.0
-    public var resistance: CGFloat = 1000.0
-
-    var downscaleIndexPaths = Set<NSIndexPath>()
+    public var length: CGFloat = 0.0 {
+        didSet {
+            dynamicAnimator.removeAllBehaviors()
+            visibleIndexPathsSet = Set<NSIndexPath>()
+        }
+    }
+    public var damping: CGFloat = 0.8 {
+        didSet {
+            dynamicAnimator.removeAllBehaviors()
+            visibleIndexPathsSet = Set<NSIndexPath>()
+        }
+    }
+    public var frequency: CGFloat = 1.0 {
+        didSet {
+            dynamicAnimator.removeAllBehaviors()
+            visibleIndexPathsSet = Set<NSIndexPath>()
+        }
+    }
+    public var resistance: CGFloat = 1000.0 {
+        didSet {
+            dynamicAnimator.removeAllBehaviors()
+            visibleIndexPathsSet = Set<NSIndexPath>()
+        }
+    }
+    
+    public var transformX: CGFloat = 0.4
+    public var transformY: CGFloat = 0.4
+    
+    
+    var downscaleIndexPaths: Set<NSIndexPath>?
     
     var dynamicAnimator: UIDynamicAnimator!
     var visibleIndexPathsSet: Set<NSIndexPath>!
@@ -119,9 +143,9 @@ public class DynamicWaveCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 if #available(iOS 9.0, *) {
                     springBehaviour.attachmentRange = UIFloatRangeZero
                 }
-                springBehaviour.length = 0.0
-                springBehaviour.damping = 0.8
-                springBehaviour.frequency = 1.0
+                springBehaviour.length = length
+                springBehaviour.damping = damping
+                springBehaviour.frequency = frequency
                 
                 if (!CGPointEqualToPoint(CGPointZero, touchLocation)) {
                     let distanceFromTouch: CGFloat
@@ -185,29 +209,25 @@ public class DynamicWaveCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 }
             }
         }
+        
+        print(visibleIndexPathsSet.count)
+        print(dynamicAnimator.behaviors.count)
     }
     
     override public func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let layoutAttributes = dynamicAnimator.itemsInRect(rect) as! [UICollectionViewLayoutAttributes]
         
-        if !downscaleIndexPaths.isEmpty {
+        if let downscaleIndexPaths = downscaleIndexPaths {
             let scaledLayoutAttributes: [UICollectionViewLayoutAttributes] = layoutAttributes.map({ (collectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes in
                 if downscaleIndexPaths.contains(collectionViewLayoutAttributes.indexPath) {
-                    collectionViewLayoutAttributes.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.4, 0.4)
+                    collectionViewLayoutAttributes.transform = CGAffineTransformScale(CGAffineTransformIdentity, transformX, transformY)
                 } else {
                     collectionViewLayoutAttributes.transform = CGAffineTransformIdentity
                 }
                 return collectionViewLayoutAttributes
             })
-            
-            if scaledLayoutAttributes.isEmpty {
-                return super.layoutAttributesForElementsInRect(rect)
-            }
             return scaledLayoutAttributes
         } else {
-            if layoutAttributes.isEmpty {
-                return super.layoutAttributesForElementsInRect(rect)
-            }
             return layoutAttributes
         }
     }

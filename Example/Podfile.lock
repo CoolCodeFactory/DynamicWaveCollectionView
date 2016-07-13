@@ -1,5 +1,5 @@
 PODS:
-  - DynamicWaveCollectionView (0.1.1)
+  - DynamicWaveCollectionView (0.9.1)
 
 DEPENDENCIES:
   - DynamicWaveCollectionView (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  DynamicWaveCollectionView: f7c95c1da4e6064b72f912c0e20f2c190e4a30d4
+  DynamicWaveCollectionView: fa400575761aeb04d6054adad4df6dba72f17b62
 
 PODFILE CHECKSUM: 3618ea7542384a9e5541046328856e090a9cd2e2
 

@@ -10,7 +10,7 @@ import UIKit
 import DynamicWaveCollectionView
 
 
-let numberOfColumn: Int = 1
+let numberOfColumn: Int = 5
 let edgeOffset: CGFloat = 10
 let minimumInteritemSpacing: CGFloat = 5
 let minimumLineSpacing: CGFloat = 5
@@ -23,35 +23,24 @@ class ViewController: DynamicWaveCollectionViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        self.waveDuration = 0.06
+        self.minCellEdgeLength = 40.0
+        gradientTopAlpha = 0.4
+        
         let collectionViewFlowLayout = collectionView!.collectionViewLayout as! DynamicWaveCollectionViewFlowLayout
         collectionViewFlowLayout.scrollDirection = .Vertical
-        // collectionViewFlowLayout.length = 0.0
-        // collectionViewFlowLayout.damping = 0.8
-        // collectionViewFlowLayout.frequency = 1.0
-        // collectionViewFlowLayout.resistance = 1000
+        collectionViewFlowLayout.length = 0.0
+        collectionViewFlowLayout.damping = 0.8
+        collectionViewFlowLayout.frequency = 1.0
+        collectionViewFlowLayout.resistance = 1000.0
+        collectionViewFlowLayout.transformX = 0.4
+        collectionViewFlowLayout.transformY = 0.4
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-//        coordinator.animateAlongsideTransition({ [weak weakSelf = self](viewControllerTransitionCoordinatorContext) in
-//            guard let _self = weakSelf else { return }
-//            let contentOffset = _self.collectionView!.contentOffset
-//            let collectionViewFlowLayout = _self.collectionView!.collectionViewLayout as! DynamicWaveCollectionViewFlowLayout
-//            collectionViewFlowLayout.invalidateLayout()
-//            _self.collectionView!.setContentOffset(contentOffset, animated: true)
-//        }, completion: { [weak weakSelf = self] (viewControllerTransitionCoordinatorContext) in
-//            guard let _self = weakSelf else { return }
-//            let contentOffset = _self.collectionView!.contentOffset
-//            let collectionViewFlowLayout = _self.collectionView!.collectionViewLayout as! DynamicWaveCollectionViewFlowLayout
-//            collectionViewFlowLayout.invalidateLayout()
-//            _self.collectionView!.setContentOffset(contentOffset, animated: true)
-//        })
-//    }
 }
 
 extension ViewController {
@@ -83,6 +72,11 @@ extension ViewController {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width = collectionView.frame.width - (edgeOffset * 2)
         return CGSize(width: width, height: 100)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        let width = collectionView.frame.width - (edgeOffset * 2)
+        return CGSize(width: width, height: 200)
     }
 }
 
@@ -119,7 +113,8 @@ extension ViewController {
             return headerView
             
         case UICollectionElementKindSectionFooter:
-            fatalError("Footer not supproted")
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "footer", forIndexPath: indexPath) as! HeaderCollectionReusableView
+            return footerView
             
         default:
             fatalError("Unknown kind type")
